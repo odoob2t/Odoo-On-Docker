@@ -1,0 +1,28 @@
+services:
+  web:
+    image: odoo:19.0
+    container_name: Odoo-19
+    depends_on:
+      - db
+    ports:
+      - "8069:8069"
+    volumes:
+      - odoo19ent-web-data:/var/lib/odoo
+      - ./config-ent:/etc/odoo
+      - ./addons:/mnt/extra-addons
+      - ./enterprise-19.0:/mnt/enterprise
+    environment:
+      - ODOO_LICENSE_KEY=M22051339735305
+  db:
+    image: postgres:latest
+    container_name: Postgres-for-odoo-19
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+    volumes:
+      - odoo19ent-db-data:/var/lib/postgresql/data
+
+volumes:
+  odoo19ent-web-data:
+  odoo19ent-db-data:

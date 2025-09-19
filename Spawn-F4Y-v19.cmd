@@ -1,0 +1,1 @@
+docker-compose -p odoo-f4y-v19 -f .\Spawn-F4Y-v19.yaml up

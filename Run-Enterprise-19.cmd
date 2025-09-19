@@ -1,0 +1,1 @@
+docker-compose -p odoo-19-enterprise -f .\Odoo19-Enterprise.yaml up
