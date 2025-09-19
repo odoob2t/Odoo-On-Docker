@@ -13,8 +13,9 @@ services:
       - ./enterprise-19.0:/mnt/enterprise
     environment:
       - ODOO_LICENSE_KEY=M22051339735305
+
   db:
-    image: postgres:latest
+    image: pgvector/pgvector:pg17    # <--- usa Postgres con pgvector
     container_name: Postgres-for-odoo-19
     environment:
       - POSTGRES_DB=postgres
@@ -22,6 +23,7 @@ services:
       - POSTGRES_USER=odoo
     volumes:
       - odoo19ent-db-data:/var/lib/postgresql/data
+      - ./init/create_vector.sql:/docker-entrypoint-initdb.d/00-create-vector.sql
 
 volumes:
   odoo19ent-web-data:
