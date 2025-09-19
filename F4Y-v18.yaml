@@ -1,0 +1,29 @@
+services:
+  web:
+    image: odoo:18.0
+    container_name: Odoo-F4Y-v18
+    depends_on:
+      - db
+    ports:
+      - "8069:8069"
+    volumes:
+      - odoof4y-web-data-v18:/var/lib/odoo
+      - ./config-f4y:/etc/odoo
+      - ./F4Y-addons:/mnt/extra-addons
+      - ./enterprise-16.0:/mnt/enterprise
+    environment:
+      - ODOO_LICENSE_KEY=M22051339735305
+    #command: /bin/bash -c "pip install pymysql cerberus prestapyt" # Da abilitare solo alla prima esecuzione su volumi nuovi
+  db:
+    image: postgres:latest
+    container_name: Postgres-for-odoo-F4Y-v18
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+    volumes:
+      - odoof4y-db-data-v18:/var/lib/postgresql/data
+
+volumes:
+  odoof4y-web-data-v18:
+  odoof4y-db-data-v18:

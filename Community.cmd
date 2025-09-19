@@ -1,0 +1,1 @@
+docker-compose -p odoo-18-community -f .\Odoo18-Community.yaml up

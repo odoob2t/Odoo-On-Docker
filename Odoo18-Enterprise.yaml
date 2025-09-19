@@ -1,0 +1,28 @@
+services:
+  web:
+    image: odoo:18.0
+    container_name: Odoo-18
+    depends_on:
+      - db
+    ports:
+      - "8069:8069"
+    volumes:
+      - odoo18ent-web-data:/var/lib/odoo
+      - ./config-ent:/etc/odoo
+      - ./addons:/mnt/extra-addons
+      - ./enterprise-18.0:/mnt/enterprise
+    environment:
+      - ODOO_LICENSE_KEY=M22051339735305
+  db:
+    image: postgres:latest
+    container_name: Postgres-for-odoo-18
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+    volumes:
+      - odoo18ent-db-data:/var/lib/postgresql/data
+
+volumes:
+  odoo18ent-web-data:
+  odoo18ent-db-data:

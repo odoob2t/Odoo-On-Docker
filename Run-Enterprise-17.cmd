@@ -1,0 +1,1 @@
+docker-compose -p odoo-17-enterprise -f .\Odoo17-Enterprise.yaml up

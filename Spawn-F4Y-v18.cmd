@@ -1,0 +1,1 @@
+docker-compose -p odoo-f4y-v16 -f .\Spawn-F4Y-v16.yaml up

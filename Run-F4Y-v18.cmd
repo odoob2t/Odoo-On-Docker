@@ -1,0 +1,1 @@
+docker-compose -p odoo-f4y-v18 -f .\F4Y-v18.yaml up

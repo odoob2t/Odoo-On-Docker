@@ -1,0 +1,8 @@
+*.zip
+.*
+_Clienti/*
+addons/*
+enterprise*/*
+enterprise*/.*
+F4Y-addons/*
+!/.gitignore
