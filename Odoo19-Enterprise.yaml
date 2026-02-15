@@ -1,6 +1,6 @@
 services:
   web:
-    image: odoo:19.0
+    image: odoo:latest
     container_name: Odoo-19
     depends_on:
       - db
@@ -15,7 +15,7 @@ services:
       - ODOO_LICENSE_KEY=M22051339735305
 
   db:
-    image: pgvector/pgvector:pg17    # <--- usa Postgres con pgvector
+    image: pgvector/pgvector:pg17    # <--- usa Postgres con pgvector (necessario per AI features)
     container_name: Postgres-for-odoo-19
     environment:
       - POSTGRES_DB=postgres
