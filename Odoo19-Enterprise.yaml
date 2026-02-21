@@ -1,7 +1,7 @@
 services:
   web:
     image: odoo:latest
-    container_name: Odoo-19
+    container_name: Odoo-19-Enterprise
     depends_on:
       - db
     ports:

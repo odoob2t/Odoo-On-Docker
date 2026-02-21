@@ -1,7 +1,8 @@
 services:
   web:
-    image: odoo:19.0
+    image: odoo:latest
     container_name: Odoo-19-Community
+    user: "0:0"
     depends_on:
       - db
     ports:
@@ -11,7 +12,7 @@ services:
       - ./config:/etc/odoo
       - ./addons:/mnt/extra-addons
   db:
-    image: postgres:latest
+    image: pgvector/pgvector:pg17    # <--- usa Postgres con pgvector (necessario per AI features)
     container_name: Postgres-for-odoo-19-Community
     environment:
       - POSTGRES_DB=postgres
@@ -19,6 +20,7 @@ services:
       - POSTGRES_USER=odoo
     volumes:
       - odoo19com-db-data:/var/lib/postgresql/data
+      - ./init/create_vector.sql:/docker-entrypoint-initdb.d/00-create-vector.sql
 
 volumes:
   odoo19com-web-data:
