@@ -12,8 +12,10 @@ services:
       - ./config:/etc/odoo
       - ./addons:/mnt/extra-addons
   db:
-    image: pgvector/pgvector:pg17    # <--- usa Postgres con pgvector (necessario per AI features)
+    image: pgvector/pgvector:pg17 # <--- usa Postgres con pgvector (necessario per AI features)
     container_name: Postgres-for-odoo-19-Community
+    ports:
+      - "5432:5432" # Necessario solo se voglio accedere al DB dall'host
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_PASSWORD=odoo
