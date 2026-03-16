@@ -2,6 +2,7 @@ services:
   web:
     image: odoo:latest
     container_name: Odoo-19-Enterprise
+    user: "0:0"
     depends_on:
       - db
     ports:
@@ -13,10 +14,18 @@ services:
       - ./enterprise-19.0:/mnt/enterprise
     environment:
       - ODOO_LICENSE_KEY=M22051339735305
+    entrypoint: ["/bin/bash", "-c"]
+    command:
+      - |
+        chown -R odoo:odoo /etc/odoo
+        chown -R odoo:odoo /var/lib/odoo
+        exec runuser -u odoo -- /entrypoint.sh odoo
 
   db:
     image: pgvector/pgvector:pg17    # <--- usa Postgres con pgvector (necessario per AI features)
-    container_name: Postgres-for-odoo-19
+    container_name: Postgres-for-odoo-19-Enterprise
+    ports:
+      - "5432:5432" # Necessario solo se voglio accedere al DB dall'host
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_PASSWORD=odoo

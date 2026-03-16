@@ -11,6 +11,12 @@ services:
       - odoo19com-web-data:/var/lib/odoo
       - ./config:/etc/odoo
       - ./addons:/mnt/extra-addons
+    entrypoint: ["/bin/bash", "-c"]
+    command:
+      - |
+        chown -R odoo:odoo /etc/odoo
+        chown -R odoo:odoo /var/lib/odoo
+        exec runuser -u odoo -- /entrypoint.sh odoo
 
   db:
     image: pgvector/pgvector:pg17 # <--- usa Postgres con pgvector (necessario per AI features)
