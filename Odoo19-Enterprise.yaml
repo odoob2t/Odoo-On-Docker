@@ -1,6 +1,6 @@
 services:
   web:
-    image: odoo:latest
+    image: odoo:19.0
     container_name: Odoo-19-Enterprise
     user: "0:0"
     depends_on:
