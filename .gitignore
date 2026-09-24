@@ -6,3 +6,5 @@ enterprise*/*
 enterprise*/.*
 F4Y-addons/*
 !/.gitignore
+/addons-*/*
+/addons-*/.*
